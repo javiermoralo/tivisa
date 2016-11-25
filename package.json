@@ -1,0 +1,26 @@
+{
+  "name": "tivissa",
+  "version": "1.0.0",
+  "description": "Bot Natura",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javiermoralo/tivissa.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "J. Javier Moralo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javiermoralo/tivissa/issues"
+  },
+  "homepage": "https://github.com/javiermoralo/tivissa#readme",
+  "dependencies": {
+    "botbuilder": "^3.4.4",
+    "restify": "^4.3.0"
+  }
+}
