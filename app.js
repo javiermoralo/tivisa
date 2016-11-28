@@ -86,7 +86,7 @@ bot.dialog('/presentacion',
     {
         if (!session.userData.name)
         {
-            session.send("Hola... Me llamo Tivsa, un adventure bot, y estoy aquí para ayudarte a organizar tus actividades deportivas en la naturaleza.");
+            session.send("Hola... Me llamo Tivsa, un adventure bot, y puedo ayudarte a organizar tus actividades en la naturaleza.");
             session.replaceDialog('/perfil');
 
         }
@@ -102,7 +102,7 @@ bot.dialog('/perfil',
 [
 	function (session) 
 	{
-			builder.Prompts.text(session, '¿Cúal es tu nombre?, indicamé solo tu nombre.');
+			builder.Prompts.text(session, '¿Cúal es tu nombre?, solo tu nombre. Gracias! :-)');
 	},
 		
 	function (session, results)
@@ -118,7 +118,7 @@ bot.dialog('/ayuda',
     function (session)
     {
         session.send("Hola " + session.userData.name + "!");
-        session.send("Tienes a tú disposición los siguientes comandos:\n\n* Actividades - Para ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
+        session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n\n* Actividades - Para ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
         //session.endDialog("En todo momento tendrás a tú disposición los siguientes comandos:\n\n* Actividades - Para ir al menú de actividades.\n* Adiós - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
     }
 ]);
