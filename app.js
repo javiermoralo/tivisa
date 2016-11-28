@@ -1,7 +1,12 @@
 /*-----------------------------------------------------------------------------
-Aquí la explicación de lo que hace el Bot
-    
+Tivsa es un chatbot de primera generación, es decir, que no tiene impletanda una
+capa cognitiva. Está pensado para ayudar al usuario a organizar sus actividades de
+senderismo, ciclismo y mountain-bike, apoyándose en la web "wikiloc".
+
+La primera beta se termino el 23 de diciembre de 2016
 -----------------------------------------------------------------------------*/
+ 
+ //Revisión de módulos y parámetros necesarios
 
 var restify = require('restify');
 var builder = require('botbuilder');
@@ -72,7 +77,9 @@ bot.dialog('/',
 
 ]);
 
-//Este diálogo no se finaliza para obligar al usuario para elegir alguna de las opciones disponibles.
+/*Diáologo de presentación, no se finaliza para hasta que el usuario elija alguna de las opciones disponibles.
+De esta forma, se evita que el bot tenga que gestionar preguntas que no vienen al caso*/
+
 bot.dialog('/presentacion',
 [
     function (session)
@@ -90,11 +97,12 @@ bot.dialog('/presentacion',
     }
 ]);
 
+//Diálogo para pedir el nombre al usuario y almacenarlo.
 bot.dialog('/perfil',
 [
 	function (session) 
 	{
-			builder.Prompts.text(session, '¿Cúal es tu nombre?');
+			builder.Prompts.text(session, '¿Cúal es tu nombre?, indicamé solo tu nombre.');
 	},
 		
 	function (session, results)
@@ -104,16 +112,18 @@ bot.dialog('/perfil',
 	}
 ]);
 
+//Diálogo de ayuda.
 bot.dialog('/ayuda',
 [
     function (session)
     {
         session.send("Hola " + session.userData.name + "!");
-        session.send("Tienes a tú disposición los siguientes comandos:\n\n* Actividades - Para ir al menú de actividades.\n* Bye! - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
+        session.send("Tienes a tú disposición los siguientes comandos:\n\n* Actividades - Para ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
         //session.endDialog("En todo momento tendrás a tú disposición los siguientes comandos:\n\n* Actividades - Para ir al menú de actividades.\n* Adiós - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
     }
 ]);
 
+//Diálogo de despedida.
 bot.dialog('/despedida',
 [
     function (session)
@@ -122,6 +132,7 @@ bot.dialog('/despedida',
     }
 ]);
 
+//Diálogo de actividades.
 bot.dialog('/actividades',
 [
     function (session, results)
@@ -133,12 +144,12 @@ bot.dialog('/actividades',
     {
         if (results.response && results.response.entity != '(salir)')
         {
-            // Lanza el diálogo correspondiente a la actividad seleccionada
+            // Lanza el diálogo correspondiente a la actividad seleccionada.
             session.beginDialog('/' + results.response.entity);
         }
         else
         {
-            // Sale del menú de Actividades y cierra la cnversación
+            // Sale del menú de Actividades y cierra la cnversación.
             session.beginDialog('/despedida');
         }
     },
@@ -150,14 +161,16 @@ bot.dialog('/actividades',
     }
 ]).reloadAction('reloadMenu', null, { matches: /^Actividades/i });
 
+//Gestión, construcción y muestra de resultados, relacionados con la actividad de senderismo.
 bot.dialog('/senderismo',
 [
-
+    //Se llama al diálogo de "preguntas" para recopilar los datos.
     function (session)
     {
         session.beginDialog('/preguntas');
     },
-     
+    
+    //Se contruye una HeroCard, con una imagen y un botón que activa una url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
@@ -177,14 +190,16 @@ bot.dialog('/senderismo',
 
 ]);
 
+//Gestión, construcción y muestra de resultados, relacionados con la actividad de cicloturismo.
 bot.dialog('/cicloturismo',
 [
-
+    //Se llama al diálogo de "preguntas" para recopilar los datos.
     function (session)
     {
         session.beginDialog('/preguntas');
     },
-     
+    
+    //Se contruye una HeroCard, con una imagen y un botón que activa una url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
@@ -192,7 +207,7 @@ bot.dialog('/cicloturismo',
             ([
                 //new builder.ThumbnailCard(session)
                 new builder.HeroCard(session)
-                    .text("Estupendo, " + session.userData.name + "!. ¿Listo para darle a los pedales?")
+                    .text("Estupendo, " + session.userData.name + "!, los paisajes y caminos te esperan! ;-)")
                     .images
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/174862/1360169932.png")
@@ -204,14 +219,16 @@ bot.dialog('/cicloturismo',
 
 ]);
 
+//Gestión, construcción y muestra de resultados, relacionados con la actividad de mountain-bike.
 bot.dialog('/mountain-bike',
 [
-
+    //Se llama al diálogo de "preguntas" para recopilar los datos.
     function (session)
     {
         session.beginDialog('/preguntas');
     },
      
+    //Se contruye una HeroCard, con una imagen y un botón que activa una url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
@@ -231,7 +248,7 @@ bot.dialog('/mountain-bike',
 
 ]);
 
-
+//Esté diálogo va haciendo una serie de preguntas y recogiendo los resultados en una serie de parámetros, que se utilizarán para mostrar el resultado final.
 bot.dialog('/preguntas',
 [
 
@@ -284,7 +301,6 @@ bot.dialog('/preguntas',
 
     function (session, results)
     {
-        //session.userData.difficulty = results.response.entity;
         switch (results.response.index)
         {
             case 0:
@@ -311,7 +327,6 @@ bot.dialog('/preguntas',
 
     function (session, results)
     {
-        //session.userData.distance = results.response.entity;
         switch (results.response.index)
         {
             case 0:
@@ -337,7 +352,6 @@ bot.dialog('/preguntas',
     },
     function (session, results)
     {
-        //session.userData.origin = results.response.entity;
         switch (results.response.index)
         {
         	case 0:
