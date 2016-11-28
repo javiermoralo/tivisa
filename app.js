@@ -19,7 +19,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function ()
 {
    console.log('%s listening to %s', server.name, server.url); 
 });
-  
+ 
 // Create chat bot
 var connector = new builder.ChatConnector(
 {
@@ -28,6 +28,8 @@ var connector = new builder.ChatConnector(
 });
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
+
+
 
 //=========================================================
 // Bots Middleware
@@ -40,7 +42,7 @@ bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i
 // Bots Acciones Globales
 //=========================================================
 
-bot.beginDialogAction('Bye!', '/despedida', { matches: /^Bye!/i });
+bot.beginDialogAction('Salir', '/despedida', { matches: /^Salir/i });
 bot.beginDialogAction('Ayuda', '/ayuda', { matches: /^Ayuda/i });
 bot.beginDialogAction('Actividades', '/actividades', { matches: /^Actividades/i });
 
