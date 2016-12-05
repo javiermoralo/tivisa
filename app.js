@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-Tivsa es un chatbot de primera generación, es decir, que no tiene impletanda una
+Tivissa es un chatbot de primera generación, es decir, que no tiene impletanda una
 capa cognitiva. Está pensado para ayudar al usuario a organizar sus actividades de
 senderismo, ciclismo y mountain-bike, apoyándose en la web "wikiloc".
 
@@ -52,7 +52,7 @@ bot.beginDialogAction('Ayuda', '/ayuda', { matches: /^Ayuda/i });
 bot.beginDialogAction('Actividades', '/actividades', { matches: /^Actividades/i });
 
 //=========================================================
-// Bots Diálogos
+// Diálogos del Bot
 //=========================================================
 
 bot.dialog('/',
@@ -77,7 +77,7 @@ bot.dialog('/',
 
 ]);
 
-/*Diáologo de presentación, no se finaliza para hasta que el usuario elija alguna de las opciones disponibles.
+/*Diálogo de presentación, no se finaliza hasta que el usuario elija alguna de las opciones disponibles.
 De esta forma, se evita que el bot tenga que gestionar preguntas que no vienen al caso*/
 
 bot.dialog('/presentacion',
@@ -86,7 +86,7 @@ bot.dialog('/presentacion',
     {
         if (!session.userData.name)
         {
-            session.send("Hola... Me llamo Tivsa, un adventure bot, y puedo ayudarte a organizar tus actividades en la naturaleza.");
+            session.send("Hola... Me llamo Tivissa, un adventure bot, y puedo ayudarte a organizar tus actividades en la naturaleza.");
             session.replaceDialog('/perfil');
 
         }
@@ -102,7 +102,7 @@ bot.dialog('/perfil',
 [
 	function (session) 
 	{
-			builder.Prompts.text(session, '¿Cúal es tu nombre?, solo tu nombre. Gracias! :-)');
+			builder.Prompts.text(session, '¿Cúal es tu nombre?, sólo tú nombre. Gracias! :)');
 	},
 		
 	function (session, results)
@@ -118,7 +118,7 @@ bot.dialog('/ayuda',
     function (session)
     {
         session.send("Hola " + session.userData.name + "!");
-        session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n\n* Actividades - Para ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
+        session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n\n* Actividades - Ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
         //session.endDialog("En todo momento tendrás a tú disposición los siguientes comandos:\n\n* Actividades - Para ir al menú de actividades.\n* Adiós - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
     }
 ]);
@@ -161,7 +161,7 @@ bot.dialog('/actividades',
     }
 ]).reloadAction('reloadMenu', null, { matches: /^Actividades/i });
 
-//Gestión, construcción y muestra de resultados, relacionados con la actividad de senderismo.
+//Gestión y construcción de los resultados de senderismo.
 bot.dialog('/senderismo',
 [
     //Se llama al diálogo de "preguntas" para recopilar los datos.
@@ -170,7 +170,7 @@ bot.dialog('/senderismo',
         session.beginDialog('/preguntas');
     },
     
-    //Se contruye una HeroCard, con una imagen y un botón que activa una url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
+    //Se contruye una HeroCard, con una imagen y un botón que activa la url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
@@ -190,7 +190,7 @@ bot.dialog('/senderismo',
 
 ]);
 
-//Gestión, construcción y muestra de resultados, relacionados con la actividad de cicloturismo.
+//Gestión y construcción de los resultados de cicloturismo.
 bot.dialog('/cicloturismo',
 [
     //Se llama al diálogo de "preguntas" para recopilar los datos.
@@ -199,7 +199,7 @@ bot.dialog('/cicloturismo',
         session.beginDialog('/preguntas');
     },
     
-    //Se contruye una HeroCard, con una imagen y un botón que activa una url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
+    //Se contruye una HeroCard, con una imagen y un botón que activa la url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
@@ -207,7 +207,7 @@ bot.dialog('/cicloturismo',
             ([
                 //new builder.ThumbnailCard(session)
                 new builder.HeroCard(session)
-                    .text("Estupendo, " + session.userData.name + "!, los paisajes y caminos te esperan! ;-)")
+                    .text("Estupendo, " + session.userData.name + "!, los paisajes y caminos te esperan!")
                     .images
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/174862/1360169932.png")
@@ -219,7 +219,7 @@ bot.dialog('/cicloturismo',
 
 ]);
 
-//Gestión, construcción y muestra de resultados, relacionados con la actividad de mountain-bike.
+//Gestión y construcción de los resultados de mountain-bike.
 bot.dialog('/mountain-bike',
 [
     //Se llama al diálogo de "preguntas" para recopilar los datos.
@@ -228,7 +228,7 @@ bot.dialog('/mountain-bike',
         session.beginDialog('/preguntas');
     },
      
-    //Se contruye una HeroCard, con una imagen y un botón que activa una url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
+    //Se contruye una HeroCard, con una imagen y un botón que activa la url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
