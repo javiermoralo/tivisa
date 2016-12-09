@@ -120,7 +120,6 @@ bot.dialog('/ayuda',
     {
         session.send("Hola " + session.userData.name + "!");
         session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n\n* Actividades - Ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
-        //session.endDialog("En todo momento tendrás a tú disposición los siguientes comandos:\n\n* Actividades - Para ir al menú de actividades.\n* Adiós - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
     }
 ]);
 
@@ -255,18 +254,21 @@ bot.dialog('/preguntas',
 
     function (session)
     {
+        //Pedir nombre de la población
         builder.Prompts.text(session, "¿Podrías indicarme la población?.");
     },
     
     function (session, results)
     {
+        //Lo que pone el usuario se guarda en la variable de sesión "locality"
         session.userData.locality = results.response;
+        //Pedir tipo de ruta
         builder.Prompts.choice(session, "Qué tipo de ruta quieres hacer?", "Sólo ida|Circular|Cualquiera"); 
     },
 
+    //Valor a la variable de sesión "type", teniendo en cuenta el índice de la selección anterior
     function (session, results)
     {
-        //session.userData.type = results.response.entity;
         switch (results.response.index)
         {
         	case 0:
@@ -282,24 +284,11 @@ bot.dialog('/preguntas',
                 session.endDialog();
                 break;
         }
-
-        /*
-        if (session.userData.type = "Sólo ida")
-        {
-            session.userData.type = 0;
-        }
-        else if(session.userData.type = "Circular")
-        {
-            session.userData.type = 1;
-        }
-        else
-        {
-            session.userData.type = "";
-        }*/
-
+        //Solictar dificultad de la ruta
         builder.Prompts.choice(session, "¿Dime la dificultad?", "Fácil|Moderado|Difícil|Muy difícil|Sólo expertos");
     },
 
+    //Valor a la variable de sesión "difficulty", teniendo en cuenta el índice de la selección anterior
     function (session, results)
     {
         switch (results.response.index)
@@ -323,9 +312,11 @@ bot.dialog('/preguntas',
                 session.endDialog();
                 break;
         }
+        //Pedir distancia de la ruta
         builder.Prompts.choice(session, "¿De cuánta distancia?", "Entre 5 y 10 km|Entre 10 y 25 km|Entre 25 y 50 km|Entre 50 y 100 km|Más de 100" ); 
     },
 
+    //Valor a la variable de sesión "distance", teniendo en cuenta el índice de la selección anterior
     function (session, results)
     {
         switch (results.response.index)
@@ -349,8 +340,11 @@ bot.dialog('/preguntas',
                 session.endDialog();
                 break;
         }
+        //Solictar origen del track
         builder.Prompts.choice(session, "¿Y por último el origen del track?", "GPS|Smartphone|Cualquiera"); 
     },
+
+    //Valor a la variable de sesión "origin", teniendo en cuenta el índice de la selección anterior
     function (session, results)
     {
         switch (results.response.index)
@@ -368,6 +362,7 @@ bot.dialog('/preguntas',
                 session.endDialog();
                 break;
         }
+        //Se vuelve al diálogo llamante con los resultados recogidos
         session.endDialogWithResult();
     }
 
