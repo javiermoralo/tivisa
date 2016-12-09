@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------
-Tivissa es un chatbot de primera generación, es decir, que no tiene impletanda una
-capa cognitiva. Está pensado para ayudar al usuario a organizar sus actividades de
+Tivisa es un chatbot de primera generación, es decir, que no tiene impletanda una
+capa cognitiva y su sistema de inteligencia está basado en un conjunto de reglas.
+Está pensado para ayudar al usuario a organizar sus actividades de
 senderismo, ciclismo y mountain-bike, apoyándose en la web "wikiloc".
 
 La primera beta se termino el 23 de diciembre de 2016
@@ -86,7 +87,7 @@ bot.dialog('/presentacion',
     {
         if (!session.userData.name)
         {
-            session.send("Hola... Me llamo Tivissa, un adventure bot, y puedo ayudarte a organizar tus actividades en la naturaleza.");
+            session.send("Hola... Me llamo Tivisa, un adventure bot, y puedo ayudarte a organizar tus actividades en la naturaleza.");
             session.replaceDialog('/perfil');
 
         }
