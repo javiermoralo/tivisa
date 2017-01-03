@@ -12,8 +12,8 @@ La primera beta se termino el 23 de diciembre de 2016
 var restify = require('restify');
 var builder = require('botbuilder');
 
-var appId = process.env.MICROSOFT_APP_ID;
-var appPassword = process.env.MICROSOFT_APP_PASSWORD;
+//var appId = process.env.MICROSOFT_APP_ID;
+//var appPassword = process.env.MICROSOFT_APP_PASSWORD;
 
 //=========================================================
 // Bot Setup
