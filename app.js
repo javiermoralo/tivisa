@@ -183,7 +183,7 @@ bot.dialog('/senderismo',
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/250919/groddle-scene-pine-trees-mountains.png")
                     ])
-                    .buttons([builder.CardAction.openUrl(session, "http://es.wikiloc.com/rutas/senderismo?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
+                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/senderismo?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
             ]);
         session.endConversation(msg);
     },
@@ -212,7 +212,7 @@ bot.dialog('/cicloturismo',
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/174862/1360169932.png")
                     ])
-                    .buttons([builder.CardAction.openUrl(session, "http://es.wikiloc.com/rutas/cicloturismo?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
+                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/cicloturismo?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
             ]);
         session.endConversation(msg);
     },
@@ -241,7 +241,7 @@ bot.dialog('/mountain-bike',
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/249626/1464343602.png")
                     ])
-                    .buttons([builder.CardAction.openUrl(session, "http://es.wikiloc.com/rutas/mountain-bike?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
+                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/mountain-bike?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
             ]);
         session.endConversation(msg);
     },
