@@ -183,7 +183,7 @@ bot.dialog('/senderismo',
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/250919/groddle-scene-pine-trees-mountains.png")
                     ])
-                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/senderismo?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
+                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/senderismo?q="+ + "'" + session.userData.locality + "'" + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
             ]);
         session.endConversation(msg);
     },
