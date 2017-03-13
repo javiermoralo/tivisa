@@ -36,5 +36,5 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-# Ficheros configuration VS Code
+# Ficheros configuration VSCode
 .vcode
