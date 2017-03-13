@@ -34,16 +34,6 @@ var connector = new builder.ChatConnector(
 });
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
-
-
-
-//=========================================================
-// Bots Middleware
-//=========================================================
-
-// Anytime the major version is incremented any existing conversations will be restarted.
-bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
-
 //=========================================================
 // Bots Acciones Globales
 //=========================================================
@@ -119,7 +109,8 @@ bot.dialog('/ayuda',
     function (session)
     {
         session.send("Hola " + session.userData.name + "!");
-        session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n\n* Actividades - Ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
+        session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n\n* \
+        Actividades - Ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
     }
 ]);
 
@@ -137,7 +128,8 @@ bot.dialog('/actividades',
 [
     function (session, results)
 	{
-        builder.Prompts.choice(session, "Bien " + session.userData.name + ", ¿Qué tipo de actividad quieres hacer?", "senderismo|cicloturismo|mountain-bike|(salir)");
+        builder.Prompts.choice(session, "Bien " + session.userData.name + ", ¿Qué tipo de actividad quieres hacer?",
+        "senderismo|cicloturismo|mountain-bike|(salir)");
     },
 
     function (session, results)
@@ -170,7 +162,8 @@ bot.dialog('/senderismo',
         session.beginDialog('/preguntas');
     },
     
-    //Se contruye una HeroCard, con una imagen y un botón que activa la url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
+    //Se contruye una HeroCard, con una imagen y un botón que activa la url donde se recogen los parámetros recogidos en el 
+    //diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
@@ -183,7 +176,12 @@ bot.dialog('/senderismo',
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/250919/groddle-scene-pine-trees-mountains.png")
                     ])
-                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/senderismo?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
+                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/senderismo?q="
+                    + session.userData.locality + "&t=" 
+                    + session.userData.type + "&d=" 
+                    + session.userData.difficulty 
+                    + "&" + session.userData.distance 
+                    + "&src=" + session.userData.origin, "Vamos a ello!")])
             ]);
         session.endConversation(msg);
     },
@@ -199,7 +197,8 @@ bot.dialog('/cicloturismo',
         session.beginDialog('/preguntas');
     },
     
-    //Se contruye una HeroCard, con una imagen y un botón que activa la url donde se recogen los parámetros recogidos en el diálogo de " preguntas".
+    //Se contruye una HeroCard, con una imagen y un botón que activa la url donde se recogen los parámetros recogidos en el 
+    //diálogo de " preguntas".
     function (session, results)
     {
         msg = new builder.Message(session)
@@ -212,7 +211,12 @@ bot.dialog('/cicloturismo',
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/174862/1360169932.png")
                     ])
-                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/cicloturismo?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
+                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/cicloturismo?q="
+                    + session.userData.locality + "&t=" 
+                    + session.userData.type + "&d=" 
+                    + session.userData.difficulty + "&" 
+                    + session.userData.distance + "&src=" 
+                    + session.userData.origin, "Vamos a ello!")])
             ]);
         session.endConversation(msg);
     },
@@ -241,7 +245,12 @@ bot.dialog('/mountain-bike',
                     ([
                         builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/249626/1464343602.png")
                     ])
-                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/mountain-bike?q="+ session.userData.locality + "&t=" + session.userData.type + "&d=" + session.userData.difficulty + "&" + session.userData.distance + "&src=" + session.userData.origin, "Vamos a ello!")])
+                    .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/mountain-bike?q="
+                    + session.userData.locality + "&t=" 
+                    + session.userData.type + "&d=" 
+                    + session.userData.difficulty + "&" 
+                    + session.userData.distance + "&src=" 
+                    + session.userData.origin, "Vamos a ello!")])
             ]);
         session.endConversation(msg);
     },
