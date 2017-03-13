@@ -255,7 +255,7 @@ bot.dialog('/preguntas',
     function (session)
     {
         //Pedir nombre de la población
-        builder.Prompts.text(session, "¿Podrías indicarme la población? (Si está compuesta por de más de una palabra, unelas con un +, por ejemplo: La+Pedriza. Gracias!)");
+        builder.Prompts.text(session, "¿Podrías indicarme la población? (Si está compuesta por de más de una palabra, únelas con un +, por ejemplo: La+Pedriza. Gracias!)");
     },
     
     function (session, results)
