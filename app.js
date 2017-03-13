@@ -377,7 +377,7 @@ bot.dialog('/preguntas',
 ]);
 
 //===================================================================
-//Monitoruzación del Bot
+//Monitorización del Bot
 //===================================================================
 // Remember to run `npm install --save botmetrics` in your app.
 //
