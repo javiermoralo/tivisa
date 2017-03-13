@@ -36,5 +36,7 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-# Ficheros configuration VSCode
-.vcode
+# Ficheros y directorios de configuración
+vcode
+.json
+.hmtl
