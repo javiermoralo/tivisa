@@ -1,6 +1,0 @@
-id = eb840e2f-24bc-4d75-9584-256f20c86bae
-pwd = otxcFXKhZOBhgn3AzRzf3Qf
-
-http://localhost:3978/api/messages
-MICROSOFT_APP_ID
-MICROSOFT_APP_PASSWORD
