@@ -6,4 +6,4 @@ capa cognitiva y su sistema de inteligencia está basado en un conjunto de regla
 Está pensado para ayudar al usuario a organizar sus actividades de
 senderismo, ciclismo y mountain-bike, apoyándose en la web "wikiloc".
 
-Se puede interactuar con él, en: http://www.botspain.eu/tivisa
+Se puede interactuar con él, en: http://www.datahack.es/tivisa
