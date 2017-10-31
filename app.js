@@ -110,7 +110,6 @@ bot.dialog('/ayuda',
     function (session)
     {
         session.send("Hola " + session.userData.name + "!");
-<<<<<<< HEAD
         session.send
         (
             "Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):" + 
@@ -119,9 +118,6 @@ bot.dialog('/ayuda',
             "\n* *Salir* - Finalizar la conversación." +
             "\n* *Ayuda* - Ver esta ayuda."
         );
-=======
-        session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n* Actividades - Ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
->>>>>>> 9cbb35037a9ce2a238faf59ed65550f9fd78a560
     }
 ]);
 
