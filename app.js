@@ -38,9 +38,10 @@ server.post('/api/messages', connector.listen());
 // Bots Acciones Globales
 //=========================================================
 
+bot.beginDialogAction('Actividades', '/actividades', { matches: /^Actividades/i });
+bot.beginDialogAction('Nombre', '/cambiar_nombre', { matches: /^Nombre/i });
 bot.beginDialogAction('Salir', '/despedida', { matches: /^Salir/i });
 bot.beginDialogAction('Ayuda', '/ayuda', { matches: /^Ayuda/i });
-bot.beginDialogAction('Actividades', '/actividades', { matches: /^Actividades/i });
 
 //=========================================================
 // Diálogos del Bot
@@ -109,7 +110,18 @@ bot.dialog('/ayuda',
     function (session)
     {
         session.send("Hola " + session.userData.name + "!");
+<<<<<<< HEAD
+        session.send
+        (
+            "Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):" + 
+            "\n* *Actividades* - Ir al menú de actividades." +
+            "\n* *Nombre* - Cambiar tu nombre." +
+            "\n* *Salir* - Finalizar la conversación." +
+            "\n* *Ayuda* - Ver esta ayuda."
+        );
+=======
         session.send("Tienes a tú disposición los siguientes comandos (puedes usarlos cuando quieras):\n* Actividades - Ir al menú de actividades.\n* Salir - Finalizar la conversación.\n* Ayuda - Ver esta ayuda.");
+>>>>>>> 9cbb35037a9ce2a238faf59ed65550f9fd78a560
     }
 ]);
 
@@ -120,6 +132,29 @@ bot.dialog('/despedida',
     {
         session.endConversation("Hasta luego, "+ session.userData.name + "! :)");
     }
+]);
+
+//Acciones para el nombre
+bot.dialog('/cambiar_nombre',
+[
+	function (session)
+	{
+			builder.Prompts.text(session, 'Parece que quieres hacer un cambio, dime tu nuevo nombre! :)');
+	},
+
+	function (session, results)
+	{
+        session.userData.name = results.response;
+        session.send("Genial " + session.userData.name + "!," + " el cambio está hecho!.");
+		session.send
+        (
+            "Recuerda que puedes utilizar los siguientes comandos:" + 
+            "\n* *Actividades* - Ir al menú de actividades." +
+            "\n* *Nombre* - Cambiar tu nombre." +
+            "\n* *Salir* - Finalizar la conversación." +
+            "\n* *Ayuda* - Ver esta ayuda."
+        );
+	}
 ]);
 
 //Diálogo de actividades.
@@ -173,7 +208,7 @@ bot.dialog('/senderismo',
                     .text("Genial, " + session.userData.name + "!. ¿Listo para calzarte las botas?")
                     .images
                     ([
-                        builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/250919/groddle-scene-pine-trees-mountains.png")
+                        builder.CardImage.create(session, "http://javiermoralo.es/tivisa/img/paisaje.png")
                     ])
                     .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/senderismo?q="
                     + session.userData.locality + "&t="
@@ -208,7 +243,7 @@ bot.dialog('/cicloturismo',
                     .text("Estupendo, " + session.userData.name + "!, los paisajes y caminos te esperan!")
                     .images
                     ([
-                        builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/174862/1360169932.png")
+                        builder.CardImage.create(session, "http://javiermoralo.es/tivisa/img/bicicleta.png")
                     ])
                     .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/cicloturismo?q="
                     + session.userData.locality + "&t="
@@ -242,7 +277,7 @@ bot.dialog('/mountain-bike',
                     .text("Dispuest@, " + session.userData.name + "!, no va a haber subida que se te resista!")
                     .images
                     ([
-                        builder.CardImage.create(session, "https://openclipart.org/image/160px/svg_to_png/249626/1464343602.png")
+                        builder.CardImage.create(session, "http://javiermoralo.es/tivisa/img/mountain_bike.png")
                     ])
                     .buttons([builder.CardAction.openUrl(session, "https://es.wikiloc.com/rutas/mountain-bike?q="
                     + session.userData.locality + "&t="
@@ -263,13 +298,17 @@ bot.dialog('/preguntas',
     function (session)
     {
         //Pedir nombre de la población
-        builder.Prompts.text(session, "¿Podrías indicarme la población? (Si está compuesta por de más de una palabra, únelas con un +, por ejemplo: La+Pedriza. Gracias!)");
+        builder.Prompts.text(session, "¿Podrías indicarme la población?");
     },
 
     function (session, results)
     {
         //Lo que pone el usuario se guarda en la variable de sesión "locality"
         session.userData.locality = results.response;
+
+        //Sustituir los espacios en blanco de la localidad introducida por '+'
+        session.userData.locality = session.userData.locality.replace(/ /g, "+");
+
         //Pedir tipo de ruta
         builder.Prompts.choice(session, "Qué tipo de ruta quieres hacer?", "Sólo ida|Circular|Cualquiera");
     },
