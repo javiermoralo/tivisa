@@ -38,9 +38,9 @@ jspm_packages
 
 # Ficheros y directorios de configuración
 vcode
-.img
+img
 .json
-.hmtl
+.html
 .txt
 .zip
 .png
