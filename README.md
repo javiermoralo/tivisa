@@ -12,7 +12,7 @@ Se puede interactuar con ella a través de:
   + Telegram: @tivisa_bot
   + Skype: https://join.skype.com/bot/eb840e2f-24bc-4d75-9584-256f20c86bae
 
-NOTA: Por cambios en la política de Microsoft, este bot no esta actualmente operativo, lo realojaré en otro sitio, lo antes posible.
+NOTA: Tivisa esta alojado en un servicio de pre-producción y puede que en la primera interacción tarde un poco en responder. Sed pacientes y disfrutad de la experiencia :).
 
 Cualquier sugerencia es bienvenida.
 
