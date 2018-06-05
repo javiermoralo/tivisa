@@ -8,7 +8,7 @@ senderismo, ciclismo y mountain-bike, apoyándose en la web "wikiloc".
 
 Se puede interactuar con ella a través de:
 
-  + Web en: http://www.datahack.es/tivisa
+  + Web en: http://www.datahack.es/labs/tivisa-the-adventure-chatbot/
   + Telegram: @tivisa_bot
   + Skype: https://join.skype.com/bot/eb840e2f-24bc-4d75-9584-256f20c86bae
 
