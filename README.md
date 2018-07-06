@@ -1,4 +1,4 @@
-# Tivisa, the adventurous bot
+# Tivisa, el bot aventurero
 
 Tivisa es un chatbot de primera generación, es decir, que no tiene implementada una
 capa cognitiva y su sistema de inteligencia está basado en un conjunto de reglas.
